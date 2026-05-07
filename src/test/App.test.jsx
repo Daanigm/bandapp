@@ -35,14 +35,12 @@ describe("Bandapp", () => {
 
   it("logs in successfully with correct credentials", async () => {
     await loginHelper();
-    // Both sidebar and main content should render
     const dashboardElements = screen.getAllByText("Dashboard");
     expect(dashboardElements.length).toBeGreaterThanOrEqual(2);
   });
 
   it("shows dashboard metric cards after login", async () => {
     await loginHelper();
-    // Metric cards have labels
     const instrumentosEls = screen.getAllByText("Instrumentos");
     expect(instrumentosEls.length).toBeGreaterThanOrEqual(1);
     const uniformesEls = screen.getAllByText("Uniformes");
@@ -51,9 +49,7 @@ describe("Bandapp", () => {
 
   it("navigates to instruments page", async () => {
     const user = await loginHelper();
-    // Click the sidebar "Instrumentos" button
     const navButtons = screen.getAllByText("Instrumentos");
-    // The sidebar one is inside a nav button
     const sidebarBtn = navButtons.find((el) => el.closest("nav"));
     await user.click(sidebarBtn);
     await waitFor(() => {
